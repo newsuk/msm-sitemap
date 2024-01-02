@@ -615,6 +615,17 @@ class Metro_Sitemap {
 
 		$post_types_in = self::get_supported_post_types_in();
 
+		$modified_posts = $wpdb->get_results(
+			$wpdb->prepare(
+				apply_filters(
+					'msm_sitemap_last_modified_posts_sql',
+					"SELECT ID, post_date FROM $wpdb->posts WHERE post_type IN ( {$post_types_in} ) AND post_modified_gmt >= %s LIMIT 1000",
+					$post_types_in
+				),
+				$date
+			)
+		);
+
 		$modified_posts = $wpdb->get_results( $wpdb->prepare( "SELECT ID, post_date FROM $wpdb->posts WHERE post_type IN ( {$post_types_in} ) AND post_modified_gmt >= %s LIMIT 1000", $date ) );
 		return $modified_posts;
 	}
