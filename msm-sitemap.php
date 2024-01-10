@@ -614,8 +614,9 @@ class Metro_Sitemap {
 		}
 
 		$post_types_in = self::get_supported_post_types_in();
+		$post_status   = self::get_post_status();
 
-		$modified_posts = $wpdb->get_results( $wpdb->prepare( "SELECT ID, post_date FROM $wpdb->posts WHERE post_type IN ( {$post_types_in} ) AND post_status = 'publish' AND post_date >= DATE_SUB( NOW(), INTERVAL 3 MONTH ) AND post_modified_gmt >= %s LIMIT 1000", $date ) );
+		$modified_posts = $wpdb->get_results( $wpdb->prepare( "SELECT ID, post_date FROM $wpdb->posts WHERE post_type IN ( {$post_types_in} ) AND post_status = %s AND post_date >= DATE_SUB( NOW(), INTERVAL 3 MONTH ) AND post_modified_gmt >= %s LIMIT 1000", $post_status, $date ) );
 		return $modified_posts;
 	}
 
