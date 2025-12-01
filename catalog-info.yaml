@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: msm-sitemap
+  description: Component for msm-sitemap
+  annotations:
+    circleci.com/project-slug: github/newsuk/msm-sitemap
+    backstage.io/source-location: url:https://github.com/newsuk/msm-sitemap/
+    github.com/team-slug: newsuk/msm-sitemap
+    backstage.io/productivity-hub-metrics-enabled: 'true'
+  tags:
+    - bu:newsuk
+spec:
+  type: service
+  lifecycle: production
+  owner: nuk
